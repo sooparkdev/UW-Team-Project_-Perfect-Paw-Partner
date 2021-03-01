@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.main-page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-page-first-col {
+    /* padding: 1.7em; */
+    font-family: 'Karla', sans-serif;
+    font-weight: 500;
+    background-color: #f5f9fd;
+    /* margin-top: 3.5rem; */
+}
+
+.main-page-second-col {
+    padding-top: 1em;
+    flex: 1;
+    background-color: #91a4b6;
+}
+
+.main-page-card-container h3 {
+    font-size: 30px;
+    text-align: center;
+    padding: 1rem;
+}
+
+.main-page-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+  
+.card-img {
+    width: 250px;
+    height: 250px; 
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+}
+  
+.main-page-card-container .card {
+    flex: 0 0 200px;
+    background-color: #e5eef7;        
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px #535353, 0 1px 3px #535353;
+}
+
+.card h3 { 
+    font-family: 'Chelsea Market', cursive;
+    font-size: 27px;
+}
+
+footer {
+    padding: 2rem;
+    background-color: #eee;
+    font-family: 'Karla', sans-serif;
+    color: #535353;
+}
+
+.modal-button {
+    background-color: #ede7da; 
+    color: #535353;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.modal-button:hover {
+    background-color: #535353;
+    color: #ede7da;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    list-style-type: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-div {
+    position: sticky;
+    margin-bottom: 87px;
+}
+
+
+nav {
+    display: flex; 
+    justify-content: space-between;
+    min-height: 10vh;
+    background-color:#e5eef7;
+    border: solid .2rem #535353;
+    flex: 1;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    align-items: center;
+    padding: 15px;
+}
+
+nav .logo {
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    /* text-transform: uppercase; */
+    color:  #535353;
+    padding-left: 120px;
+}
+
+nav .nav-links {
+    display: flex;
+}
+
+
+
+.nav-links li {
+    margin: 16px;
+}
+
+nav .nav-links a , nav .splash-link a, nav .hamburger-link div{
+    padding: 0%;
+    color: #535353;
+    font-size: 20px;
+}
+
+nav .nav-links a:hover, nav .splash-link a:hover, nav .hamburger-link div:hover, nav .filter-link div:hover{
+    color: #567ea3;
+  }
+
+nav .hamburger-link {
+    display: none;
+}
+
+nav .paw-link {
+    display: none;
+}
+
+nav .paw-link a, nav .filter-link div, nav .hamburger-link div {
+    color: #535353;
+    font-size: 24px;
+    margin: 12px;
+}
+
+nav>.paw-link>li>a {
+    font-size: 34px;
+}
+
+nav .filter-link {
+    display: none;
+}
+
+.dropdown {
+    padding: 20px;
+    background-color: #e5eef7;
+    border: 2px solid #535353;
+    position: fixed;
+    top: 91px;
+    right: 4px;
+    width: 50%;
+    flex-flow: column nowrap;
+    text-align: center;
+    display: none;
+}
+
+.dropdown a {
+    padding: 8px;
+    font-family: 'Gurajada', Arial, sans-serif;
+    color: #535353;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.dropdown a:hover {
+    color: #567ea3;
+}
+
+.filters {
+    float: left;
+    width: 240px;
+    background-color: #F5F9FD;
+    padding: 24px;
+    font-family: 'Gurajada', Arial, sans-serif;
+    color: #535353;
+}
+
+.filters h2 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-style: italic;
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+.filters label {
+    margin-left: 12px;
+}
+
+.filters input {
+    margin-left: 6px;
+}
+
+@media all and (max-width: 768px) {
+    nav .hamburger-link {
+        display: block;
+    }
+
+    nav .paw-link {
+        display: block;
+    }
+
+    nav .splash-link {
+        display: none;
+    }
+
+    nav .logo {
+        display: none;
+    }
+    
+    nav .filter-link {
+        display: block;
+    }
+
+    nav .nav-links {
+        display: none;
+    }
+
+    .dropdown {
+        display: flex;
+    }
+
+    .filters {
+        display: fixed;
+        top: 87px;
+        width: 100%;
+
+    }
+    
+    .main-page-first-col {
+        display: block;
+        flex-basis: 250px;
+      }
+    
+}
