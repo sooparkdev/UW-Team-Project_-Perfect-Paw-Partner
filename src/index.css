@@ -220,14 +220,14 @@ nav .filter-link {
 }
 
 @media (min-width: 598px) {
-    body.splash-body {
+    .splash-body {
       font-size: 15px;
     }
   }
   
 
 @media all and (max-width: 768px) {
-    body.splash-body {
+    .splash-body {
         font-size: 17px;
     }
 
@@ -277,7 +277,7 @@ nav .filter-link {
 }
 
 /* Splash Page */
-body.splash-body {
+.splash-body {
     margin: 0;
     font-family: 'Flavors', cursive;
     font-size: 20px;

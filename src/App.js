@@ -22,12 +22,12 @@ export function App(props) {
 
 export function SplashPage () {
   return(
-      <body className="splash-body">
+      <div className="splash-body">
           <header id="splash-contents">
               <h1>Perfect Paw Partner</h1> 
               <Link to='/home' className="splash-button" aria-label="a button to go to the main page"> GO TO MAIN PAGE </Link>
           </header>
-      </body>
+      </div>
   );
 }
 
