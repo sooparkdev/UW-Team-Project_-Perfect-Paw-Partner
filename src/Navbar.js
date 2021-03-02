@@ -1,6 +1,7 @@
 import React, { useState } from 'react'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faPaw, faChevronLeft, faEnvelope, faSmile, faPlusSquare, faBars } from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom';
 
 function NavBar(props) {
     const [open, setOpen] = useState(false);
@@ -11,7 +12,8 @@ function NavBar(props) {
 
                 <ul className="splash-link">
                     <li>
-                        <a href="/"><FontAwesomeIcon icon={faChevronLeft}/></a>
+                        <Link to='/splash'> <FontAwesomeIcon icon={faChevronLeft}/> </Link>
+                        {/* <a href="/"><FontAwesomeIcon icon={faChevronLeft}/></a> */}
                     </li>
                 </ul>
               

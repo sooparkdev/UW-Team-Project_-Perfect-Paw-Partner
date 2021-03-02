@@ -219,7 +219,22 @@ nav .filter-link {
     margin-left: 6px;
 }
 
+@media (min-width: 598px) {
+    body.splash-body {
+      font-size: 15px;
+    }
+  }
+  
+
 @media all and (max-width: 768px) {
+    body.splash-body {
+        font-size: 17px;
+    }
+
+    #splash-contents h1{
+        font-size: 60px;
+    }
+
     nav .hamburger-link {
         display: block;
     }
@@ -259,5 +274,47 @@ nav .filter-link {
         display: block;
         flex-basis: 250px;
       }
-    
 }
+
+/* Splash Page */
+body.splash-body {
+    margin: 0;
+    font-family: 'Flavors', cursive;
+    font-size: 20px;
+    line-height: 1.6;
+}
+#splash-contents {
+    background-image: url('./splash-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: ivory;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+#splash-contents h1 {
+    line-height: 1.2;
+    margin-bottom: 0.7em;
+}
+
+#splash-contents .splash-button {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color:ivory;
+    border: ivory 1.5px solid;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+#splash-contents .splash-button:hover {
+    background-color:ivory;
+    color: #535353;
+}
+
+    
