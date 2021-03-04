@@ -13,6 +13,11 @@
     height: 100%;
 }
 
+.main-page-pets {
+    display: flex;
+    flex-direction: row;
+}
+
 .main-page-first-col {
     /* padding: 1.7em; */
     font-family: 'Karla', sans-serif;
@@ -269,11 +274,15 @@ nav .filter-link {
         width: 100%;
 
     }
+
+    .main-page-pets {
+        flex-direction: column;
+    }
     
     .main-page-first-col {
         display: block;
         flex-basis: 250px;
-      }
+    }
 }
 
 /* Splash Page */

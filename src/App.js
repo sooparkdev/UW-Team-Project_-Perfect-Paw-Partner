@@ -40,13 +40,13 @@ function HomePage(props) {
   return (
     <main>
       <div className="main-page-container">
-        <section className="main-page-first-col">
-          <NavBar showFilters={showMobileFilters} onFilterClick={toggleFilters}/>
-          <FilterBar showFilterDropdown={showMobileFilters}/>
-        </section>
-        <section className="main-page-second-col">
-          <PetList petInfo={pets}/>
-        </section>
+        <NavBar showFilters={showMobileFilters} onFilterClick={toggleFilters}/>
+        <div className="main-page-pets">
+          <FilterBar showFilterDropdown={showMobileFilters} className="main-page-first-col"/>
+          <section className="main-page-second-col">
+            <PetList petInfo={pets}/>
+          </section>
+        </div>
         <footer>
           <address>
             Contact us at <a href="mailto:ppp@uw.edu">ppp@uw.edu</a>, or at <a href="tel:123-123-4567">(123) 123-4567</a>
