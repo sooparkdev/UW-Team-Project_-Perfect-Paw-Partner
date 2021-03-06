@@ -53,7 +53,7 @@ const initialState = {
 }
 
 function HomePage(props) {
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState(initialState);
   function onChange(category, field, val) {
     const clone = JSON.parse(JSON.stringify(state))
     clone[category][field] = !val
@@ -65,23 +65,27 @@ function HomePage(props) {
       setShowMobileFilters(!showMobileFilters);
   }
   return (
-    <main>
-      <div className="main-page-container">
+    <div>
+      <header>
         <NavBar showFilters={showMobileFilters} onFilterClick={toggleFilters}/>
-        <div className="main-page-pets">
-          <FilterBar state={state} onChange={onChange} showFilterDropdown={showMobileFilters} className="main-page-first-col"/>
-          <section className="main-page-second-col">
-            <PetList state={state} petInfo={pets}/>
-          </section>
+      </header>
+      <main>
+        <div className="main-page-container">
+          <div className="main-page-pets">
+            <FilterBar state={state} onChange={onChange} showFilterDropdown={showMobileFilters} className="main-page-first-col"/>
+            <section className="main-page-second-col">
+              <PetList state={state} petInfo={pets}/>
+            </section>
+          </div>
         </div>
-        <footer>
-          <address>
-            Contact us at <a href="mailto:ppp@uw.edu">ppp@uw.edu</a>, or at <a href="tel:123-123-4567">(123) 123-4567</a>
-          </address>
-          <p>&copy; 2021 INFO 340 Group B12.</p>      
-        </footer>
-      </div>
-    </main>
+      </main>
+      <footer>
+        <address>
+          Contact us at <a href="mailto:ppp@uw.edu">ppp@uw.edu</a>, or at <a href="tel:123-123-4567">(123) 123-4567</a>
+        </address>
+        <p>&copy; 2021 INFO 340 Group B12.</p>      
+      </footer>
+    </div>
   );
 }
 
