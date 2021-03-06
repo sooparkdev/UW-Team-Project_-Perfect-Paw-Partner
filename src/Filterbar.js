@@ -1,21 +1,7 @@
 import React, { useState } from 'react';
 
 function FilterBar(props) {
-    const [dog, setDog] = useState(true);
-    const [cat, setCat] = useState(true);
-
-    const [small, setSmall] = useState(true);
-    const [medium, setMedium] = useState(true);
-    const [large, setLarge] = useState(true);
-
-    const [male, setMale] = useState(true);
-    const [female, setFemale] = useState(true);
-
-    const [age0, setAge0] = useState(true);
-    const [age2, setAge2] = useState(true);
-    const [age6, setAge6] = useState(true);
-    const [age11, setAge11] = useState(true);
-    const [age16, setAge16] = useState(true);
+    const { state, onChange } = props
 
     return (
         <>
@@ -23,7 +9,26 @@ function FilterBar(props) {
             <div className="filters">
                 <h1>Filter</h1>
                 <form>
-                    <h2>Pet Type</h2>
+                    {Object.keys(state).map((key, i) => {
+                        return (
+                            <div key={i}>
+                                <h2>{key}</h2>
+                                {Object.keys(state[key]).map((field, j) => {
+                                    return (
+                                        <label key={j}>{field} 
+                                            <input
+                                                name={field}
+                                                type="checkbox"
+                                                checked={state[key][field]}
+                                                onChange={e => onChange(key, field, !e.target.checked)}
+                                            />
+                                        </label>
+                                    )
+                                })}
+                            </div>
+                        )
+                    })}
+                    {/* <h2>Pet Type</h2>
                     <label>Dog 
                         <input
                             name="dog"
@@ -126,7 +131,7 @@ function FilterBar(props) {
                             checked={age16}
                             onChange={e => setAge16(e.target.checked)}
                         />
-                    </label>
+                    </label> */}
                 </form>
             </div>
         }

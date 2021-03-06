@@ -4,8 +4,6 @@ import NavBar from './Navbar';
 import FilterBar from './Filterbar';
 import { BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 
-
-
 export function App(props) {
   const pets = props.pets;
 
@@ -31,7 +29,36 @@ export function SplashPage () {
   );
 }
 
+const initialState = {
+  Type: {
+    Dog: true,
+    Cat: true,
+  },
+  Size: {
+    Small: true,
+    Medium: true,
+    Large: true,
+  },
+  Sex: {
+    Male: true,
+    Female: true,
+  },
+  Age: {
+    '0-1': true,
+    '2-5': true,
+    '6-10': true,
+    '11-15': true,
+    '16+': true,
+  }
+}
+
 function HomePage(props) {
+  const [state, setState] = useState(initialState)
+  function onChange(category, field, val) {
+    const clone = JSON.parse(JSON.stringify(state))
+    clone[category][field] = !val
+    setState(clone)
+  }
   const pets = props.pets;
   const [showMobileFilters, setShowMobileFilters] = useState(true);
   function toggleFilters() {
@@ -42,9 +69,9 @@ function HomePage(props) {
       <div className="main-page-container">
         <NavBar showFilters={showMobileFilters} onFilterClick={toggleFilters}/>
         <div className="main-page-pets">
-          <FilterBar showFilterDropdown={showMobileFilters} className="main-page-first-col"/>
+          <FilterBar state={state} onChange={onChange} showFilterDropdown={showMobileFilters} className="main-page-first-col"/>
           <section className="main-page-second-col">
-            <PetList petInfo={pets}/>
+            <PetList state={state} petInfo={pets}/>
           </section>
         </div>
         <footer>
