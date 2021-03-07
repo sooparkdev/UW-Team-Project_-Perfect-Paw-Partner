@@ -13,7 +13,6 @@ function NavBar(props) {
                 <ul className="splash-link">
                     <li>
                         <Link to='/splash'> <FontAwesomeIcon icon={faChevronLeft}/> </Link>
-                        {/* <a href="/"><FontAwesomeIcon icon={faChevronLeft}/></a> */}
                     </li>
                 </ul>
               
@@ -31,7 +30,6 @@ function NavBar(props) {
                     </li>
                 </ul>
                 
-                {/* * <ul className="nav-links" style={{transform: open ? "translateX(0px)" : "" }}>  */}
                 <ul className="nav-links">
                     <li>
                         <a href="/"><FontAwesomeIcon icon={faPlusSquare}/></a>
@@ -62,4 +60,3 @@ function NavBar(props) {
 }
 
 export default NavBar;
-
