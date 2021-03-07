@@ -9,7 +9,6 @@ function NavBar(props) {
     return (
         <div className="nav-div">
             <nav>
-
                 <ul className="splash-link">
                     <li>
                         <Link to='/splash'> <FontAwesomeIcon icon={faChevronLeft}/> </Link>
@@ -26,19 +25,19 @@ function NavBar(props) {
                 
                 <ul className="paw-link">
                     <li>
-                        <a href="/"><FontAwesomeIcon icon={faPaw}/></a>
+                        <Link to='/home'><FontAwesomeIcon icon={faPaw}/></Link>
                     </li>
                 </ul>
                 
                 <ul className="nav-links">
                     <li>
-                        <a href="/"><FontAwesomeIcon icon={faPlusSquare}/></a>
+                        <a href="#new-post"><FontAwesomeIcon icon={faPlusSquare}/></a>
                     </li>
                     <li>
-                        <a href="/"><FontAwesomeIcon icon={faEnvelope}/></a>
+                        <a href="#message"><FontAwesomeIcon icon={faEnvelope}/></a>
                     </li>
                     <li>
-                        <a href="/"><FontAwesomeIcon icon={faSmile}/></a>
+                        <a href="#profile"><FontAwesomeIcon icon={faSmile}/></a>
                     </li>
                 </ul>
                 <ul className="hamburger-link">
@@ -48,7 +47,7 @@ function NavBar(props) {
                 </ul>
                 { showDropdown && 
                     <div className="dropdown">
-                        <a href="splash-page.html">Back to Splash</a>
+                        <Link to="/splash">Back to Splash</Link>
                         <a href="#new-post">New Post</a>  
                         <a href="#message">Messaging</a>
                         <a href="#profile">Profile</a>

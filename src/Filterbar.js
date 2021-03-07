@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function FilterBar(props) {
     const { state, onChange } = props
@@ -28,7 +28,7 @@ function FilterBar3 (props) {
 
 function FilterBar2 (props) {
     let var2 = Object.keys(props.state[props.val]).map((field, j) => {
-            return (<FilterBar1 key={j} val={props.val} j={j} field={field} state={props.state} onChange={props.onChange}/>)
+        return (<FilterBar1 key={j} val={props.val} j={j} field={field} state={props.state} onChange={props.onChange}/>)
     });
      
     return (
@@ -48,7 +48,6 @@ function FilterBar1 (props) {
                 type="checkbox"
                 checked={props.state[props.val][props.field]}
                 onChange={e => props.onChange(props.val, props.field, !e.target.checked)}
-                
             />
         </label>
     );
