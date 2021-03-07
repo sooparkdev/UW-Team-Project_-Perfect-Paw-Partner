@@ -6,45 +6,16 @@ function FilterBar(props) {
     return (
         <>
         {props.showFilterDropdown && 
-        <FilterBar3 state={state} onChange={onChange}/>
-            // <div className="filters">
-            //     <h1>Filter</h1>
-            //     <form>
-            //         {Object.keys(state).map((key, i) => {
-            //             return (
-            //                 <div key={i}>
-            //                     <h2>{key}</h2>
-            //                     {Object.keys(state[key]).map((field, j) => {
-            //                         return (
-            //                             <label key={j}>{field} 
-            //                                 <input
-            //                                     name={field}
-            //                                     type="checkbox"
-            //                                     checked={state[key][field]}
-            //                                     onChange={e => onChange(key, field, !e.target.checked)}
-            //                                 />
-            //                             </label>
-            //                         )
-            //                     })}
-            //                 </div>
-            //             )
-            //         })}
-            //     </form>
-            // </div>
-        }
+        <FilterBar3 state={state} onChange={onChange}/>}
         </>
     )
 }
 
 function FilterBar3 (props) {
-    
-    let var3 = Object.keys(props.state).map((key) => {
-        // console.log(key)
-
-        return <FilterBar2 value={key} state={props.state} onChange={props.onChange}/>
+    let var3 = Object.keys(props.state).map((val, i) => {
+        return <FilterBar2 key={i} val={val} i={i} state={props.state} onChange={props.onChange}/>
     });
 
-    
     return (
         <div className="filters">
             <h1>Filter</h1>
@@ -55,41 +26,32 @@ function FilterBar3 (props) {
     );
 }
 
-
 function FilterBar2 (props) {
-    // console.log(props.value);
-
-    let var2 = Object.keys(props.state[props.value]).map((field, j) => {
-            return (<FilterBar1 value={j} field={field} state={props.state} onChange={props.onChange}/>)
+    let var2 = Object.keys(props.state[props.val]).map((field, j) => {
+            return (<FilterBar1 key={j} val={props.val} j={j} field={field} state={props.state} onChange={props.onChange}/>)
     });
-    
-
-        
+     
     return (
-        <div key={props.value}>
-            <h2>{props.value}</h2>
+        <div key={props.i}>
+            <h2>{props.val}</h2>
             {var2}
         </div>
     );
 }
 
 function FilterBar1 (props) {
-    let variable = props.value>props.field
-    console.log(variable)
     return (
-        <label key={variable}>
+        <label key={props.j}>
+            {props.field}
             <input
                 name={props.field}
                 type="checkbox"
-                checked={props.state[variable][props.field]}
-                onChange={e => props.onChange(variable, props.field, !e.target.checked)}
+                checked={props.state[props.val][props.field]}
+                onChange={e => props.onChange(props.val, props.field, !e.target.checked)}
                 
             />
         </label>
     );
 }
-
-    
-
 
 export default FilterBar;
