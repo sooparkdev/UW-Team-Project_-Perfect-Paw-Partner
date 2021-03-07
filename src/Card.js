@@ -4,12 +4,12 @@ export default function PetList(props) {
     let pets = props.petInfo;
     let state = props.state;
     let card = pets.filter((pet) => {
-      const { petType, size, age, sex } = pet
+      const { petType, size, age, sex } = pet;
       if (state.Type[petType] !== true) {
-        return null
+        return null;
       }
       if (state.Size[size] !== true) {
-        return null
+        return null;
       }
       if (!state.Age[`0-1`] && age >= 0 && age <= 1) {
         return null;
@@ -27,7 +27,7 @@ export default function PetList(props) {
         return null;
       }
       if (state.Sex[sex] !== true) {
-        return null
+        return null;
       }
       return pet
     }).map((pet) => (<PetCard key={pet.name} petObj={pet} />));
@@ -37,6 +37,7 @@ export default function PetList(props) {
       </div>
     );
   }
+
   export function PetCard(props) {
     let pet = props.petObj;
     return (
