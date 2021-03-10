@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PetList from './Card';
 import NavBar from './Navbar';
+import BookmarkList from './Bookmark';
 import FilterBar from './Filterbar';
+import Profile from './ProfilePage'
 import { BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 
 export function App(props) {
@@ -13,6 +15,8 @@ export function App(props) {
           <Route exact path="/"> <SplashPage pets={pets}/> </Route>
           <Route path="/home"> <HomePage pets={pets}/> </Route>
           <Route path="/splash"> <SplashPage /> </Route>
+          <Route path="/bookmark"> <BookmarkList pets={pets}/> </Route>
+          <Route path="/adopt/:petName"> <Profile petArray={pets}/> </Route>
         </Switch>      
       </BrowserRouter>
   )

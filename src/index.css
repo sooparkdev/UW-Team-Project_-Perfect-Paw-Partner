@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Gurajada&display=swap');
 
 * {
     box-sizing: border-box;
@@ -233,6 +234,10 @@ nav .filter-link {
   
 
 @media all and (max-width: 768px) {
+    .bookmark-profile-button {
+        font-size: 27px;
+    }
+
     .splash-body {
         font-size: 17px;
     }
@@ -326,5 +331,139 @@ nav .filter-link {
     background-color:ivory;
     color: #535353;
 }
+
+/* Pet Profile Page */
+
+button {
+    font-family: 'Gurajada', sans-serif;
+    background-color: #ede7da; 
+    border: 2px solid #535353;
+    color: #535353;
+    padding: 1px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 21px;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+   /* Pet Profile Page */
+  .profile-flex-container {
+    display: flex;
+    height: 850px;
+    margin: 1.5em ;
+    background-color: #ede7da;
+    border-radius: 40px;
+    flex-direction: column; 
+    font-family: 'Gurajada', sans-serif;
+    color: #535353;
+  }
+  
+  .profile-column.pic-section, .profile-column.text-section {
+    margin: 1.5em;
+  }
+  
+  .profile-column img {                                                         
+    width: 250px;
+    height: 250px;
+    box-shadow: 1px 3px 50px rgba(0, 0, 0, 0.16);
+    object-fit: cover;
+  }
+  
+  .name-item ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .name-item li {
+    display: inline;
+  }
+  
+  li .inline {
+    display: inline;
+  }
+  
+  li h1.inline {
+    margin-right: 0.1em;
+  }
+  
+  .name-item h1 {
+    font-family: 'Gurajada', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+    margin: 0px;
+  }
+  
+  .filter-item h2 {
+    font-family: 'Gurajada', sans-serif;
+    display: inline;
+    padding-right: 0.5em;
+    font-weight: 500;
+    font-size: 30px;
+    margin: 0px;
+  }
+  
+  .bio-item > p {
+    font-family: 'Gurajada', sans-serif;
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    font-size: 26px;
+    margin: 1em 0em;
+  }
+  
+  .material-icons.md-24 { 
+    font-size: 24px; 
+  }
+  
+  button.bookmark-button:hover {
+    background-color: #535353;
+    color: white;
+  }
+  
+ .bookmark-container {
+     background-color: #8eb0d1;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-evenly; 
+ } 
+
+.bookmarkCard {
+    display: flex;
+    flex: 0 0 500px;  
+}
+.bookmarkCard button {    
+    display: flex;
+    flex: 0 0 500px;  
+    flex-direction: row;
+    background-color: #e5eef7;        
+    margin: 1em;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px #535353, 0 1px 3px #535353;
+}
+
+.bookmark-card-img {
+    width: 250px;
+    height: 250px; 
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    padding-right: 1em;
+}
+
+.bookmarkCard h3 {
+    font-size: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
     

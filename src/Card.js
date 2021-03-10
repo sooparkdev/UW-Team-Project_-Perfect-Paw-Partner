@@ -1,4 +1,7 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { useState } from 'react';
+
 
 export default function PetList(props) {
     let pets = props.petInfo;
@@ -40,8 +43,18 @@ export default function PetList(props) {
 
   export function PetCard(props) {
     let pet = props.petObj;
+    const [redirectTo, setRedirect] = useState(undefined)
+
+    const handleClick = () => {
+      setRedirect(pet.name)
+    }
+
+    if(redirectTo) { 
+      return <Redirect push to={"/adopt/" + redirectTo} />
+    } 
+
     return (
-      <div className="card">
+      <div className="card" onClick={handleClick}>
         <button className="modal-button">
           <img className="card-img" src={'img/' + pet.name + '.jpg'} alt={pet.name}/>
           <h3 className="card-title">{pet.name}</h3>

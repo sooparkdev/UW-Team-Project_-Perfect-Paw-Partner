@@ -34,7 +34,7 @@ function NavBar(props) {
                         <a href="#new-post"><FontAwesomeIcon icon={faPlusSquare}/></a>
                     </li>
                     <li>
-                        <a href="#message"><FontAwesomeIcon icon={faEnvelope}/></a>
+                        <Link to='/bookmark' ><FontAwesomeIcon  icon={faEnvelope}/> </Link>
                     </li>
                     <li>
                         <a href="#profile"><FontAwesomeIcon icon={faSmile}/></a>
