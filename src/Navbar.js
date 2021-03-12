@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faPaw, faChevronLeft, faEnvelope, faSmile, faPlusSquare, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faPaw, faChevronLeft, faEnvelope, faSmile, faPlusSquare, faBars, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
 import firebase from 'firebase/app';
 
@@ -41,10 +41,7 @@ function NavBar(props) {
                 
                 <ul className="nav-links">
                     <li>
-                        <a href="#new-post"><FontAwesomeIcon icon={faPlusSquare}/></a>
-                    </li>
-                    <li>
-                        <Link to='/bookmark' ><FontAwesomeIcon  icon={faEnvelope}/> </Link>
+                        <Link to='/bookmark' ><FontAwesomeIcon  icon={faBookmark}/> </Link>
                     </li>
                     <li>
                         {/* <a href="#profile"><FontAwesomeIcon icon={faSmile}/></a> */}
@@ -62,9 +59,7 @@ function NavBar(props) {
                 { showDropdown && 
                     <div className="dropdown">
                         <Link to="/splash">Back to Splash</Link>
-                        <a href="#new-post">New Post</a>  
-                        <a href="#message">Messaging</a>
-                        <a href="#profile">Profile</a>
+                        <a href="#bookmarks">Bookmarks</a>
                     </div>
                 }
             </nav>
