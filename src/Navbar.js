@@ -41,7 +41,7 @@ function NavBar(props) {
                 
                 <ul className="nav-links">
                     <li>
-                        <Link to='/bookmark' ><FontAwesomeIcon  icon={faBookmark}/> </Link>
+                        <Link to='/bookmark' ><FontAwesomeIcon className="bookmarkButton" icon={faBookmark}/> </Link>
                     </li>
                     <li>
                         {/* <a href="#profile"><FontAwesomeIcon icon={faSmile}/></a> */}
@@ -59,7 +59,7 @@ function NavBar(props) {
                 { showDropdown && 
                     <div className="dropdown">
                         <Link to="/splash">Back to Splash</Link>
-                        <a href="#bookmarks">Bookmarks</a>
+                        <Link to="/bookmark">Bookmark</Link>
                     </div>
                 }
             </nav>

@@ -27,6 +27,16 @@ export function App(props) {
   // const [errorMessage, setErrorMessage] = useState(undefined);
   const [user, setUser] = useState(undefined);
 
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User logged in already or has just logged in.
+      console.log(user.uid);
+    } else {
+      // User not logged in or has just logged out.
+    }
+  });
+
   return (
       <BrowserRouter>
         <Switch>
@@ -34,8 +44,8 @@ export function App(props) {
           <Route path="/home"> <HomePage pets={pets} user={user} /> </Route>
           <Route path="/splash"> <SplashPage /> </Route>
           <Route path="/login"> <LoginPage pets={pets} user={user} setUser={setUser} /> </Route>
-          <Route path="/bookmark"> <BookmarkList pets={pets}/> </Route>
-          <Route path="/adopt/:petName"> <Profile petArray={pets}/> </Route>
+          <Route path="/bookmark"> <BookmarkList pets={pets} user={user}/> </Route>
+          <Route path="/adopt/:petName"> <Profile petArray={pets} user={user}/> </Route>
         </Switch>      
       </BrowserRouter>
   )
