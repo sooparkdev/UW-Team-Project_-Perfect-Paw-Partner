@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { Link, useParams } from 'react-router-dom';
 import firebase from 'firebase/app';
@@ -6,32 +6,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 
 export default function Profile(props) {
-    const urlParams = useParams()
+    const [save, setSave] = useState(false)
+
+    const urlParams = useParams();
     let petName = urlParams.petName;
     let pet =  _.find(props.petArray, {name: petName});
 
-    // useEffect(() => {
-    //     const userRef = firebase.database().ref(props.user) 
-    //     userRef.on('value', (snapshot) => {
-    //     //const theUserObj = snapshot.val()
-    // })
-    // }, [])
+    useEffect(() => {
+        const userRef = firebase.database().ref(props.user) 
+        userRef.on('value', (snapshot) => {
+        const theUserObj = snapshot.val()
+    })
+    }, [])
 
-    // const newCardObj = pet
-
-    // const userRef = firebase.database().ref(props.user)
-    // userRef.push(newCardObj)
-
-    // function HandleBookmarkClick() {
-    // }
-
+    function handleBookmarkClick() {
+        // if else -- toggle
+        // keep track of state variable 
+        if(save) {
+            const newCardObj = pet
+            const userRef = firebase.database().ref(props.user)
+            userRef.push(newCardObj)
+        } else {
+            const newCardObj = pet
+            const userRef = firebase.database().ref(props.user).set()
+            userRef.push(undefined)
+        }
+    }
 
     return (
         <div className="profile-body">
             <div className= "profile-flex-container">
                 <Link to='/home'> <FontAwesomeIcon className="profileBackButton" icon={faChevronLeft}/> </Link>
                 <section className="profile-column pic-section">
-                    <img src={'img/' + petName + '.jpg'} alt={"profile picture of " + pet.name}/>
+                    <img src={'/img/' + petName + '.jpg'} alt={"profile picture of " + pet.name}/>
                 </section>
 
                 <section className="profile-column text-section">
@@ -55,7 +62,7 @@ export default function Profile(props) {
                         </div>
 
                         <div>
-                            <button className="bookmark-button" type="button" aria-label="a button saving this pet to bookmark">SAVE TO BOOKMARK</button>
+                            <button className="bookmark-button" type="button" aria-label="a button saving this pet to bookmark"onClick={handleBookmarkClick} >SAVE TO BOOKMARK</button>
                         </div>
 
                     </div>

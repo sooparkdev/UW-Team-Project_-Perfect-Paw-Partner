@@ -352,7 +352,7 @@ button {
   .profile-flex-container {
     display: flex;
     height: 850px;
-    margin: 1.5em ;
+    margin: 1.8em ;
     background-color: #ede7da;
     border-radius: 40px;
     flex-direction: column; 
@@ -361,7 +361,7 @@ button {
   }
   
   .profile-column.pic-section, .profile-column.text-section {
-    margin: 1.5em;
+    margin: 1.5em 2em;
   }
   
   .profile-column img {                                                         
