@@ -26,11 +26,18 @@ export function App(props) {
   const pets = props.pets;
   // const [errorMessage, setErrorMessage] = useState(undefined);
   const [user, setUser] = useState(undefined);
+  const [ userInfo, setInfo ] = useState(undefined);
 
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      setInfo(user.uid);
       // User logged in already or has just logged in.
+      
+      firebase.database().ref("user").child(user.uid).set( {
+        uid: user.uid,
+        name: user.displayName
+      })
       console.log(user.uid);
     } else {
       // User not logged in or has just logged out.
@@ -45,7 +52,7 @@ export function App(props) {
           <Route path="/splash"> <SplashPage /> </Route>
           <Route path="/login"> <LoginPage pets={pets} user={user} setUser={setUser} /> </Route>
           <Route path="/bookmark"> <BookmarkList pets={pets} user={user}/> </Route>
-          <Route path="/adopt/:petName"> <Profile petArray={pets} user={user}/> </Route>
+          <Route path="/adopt/:petName"> <Profile petArray={pets} user={userInfo}/> </Route>
         </Switch>      
       </BrowserRouter>
   )
@@ -79,8 +86,7 @@ export function LoginPage (props) {
      <div className="container">
        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
      </div>
-   );
- } else {
+   )} else {
    content = (
      <div>
        {user &&

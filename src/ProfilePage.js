@@ -4,9 +4,12 @@ import { Link, useParams } from 'react-router-dom';
 import firebase from 'firebase/app';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+// 
+
 
 export default function Profile(props) {
     const [save, setSave] = useState(false)
+    const [cardListObj, setList] = useState({})
 
     const urlParams = useParams();
     let petName = urlParams.petName;
@@ -22,15 +25,41 @@ export default function Profile(props) {
     function handleBookmarkClick() {
         // if else -- toggle
         // keep track of state variable 
-        if(save) {
-            const newCardObj = pet
-            const userRef = firebase.database().ref(props.user)
-            userRef.push(newCardObj)
-        } else {
-            const newCardObj = pet
-            const userRef = firebase.database().ref(props.user).set()
-            userRef.push(undefined)
-        }
+        // setSave(true);
+        // if(save) {
+            let updatedcardListObj = {...cardListObj};
+            updatedcardListObj[petName] = pet;
+            setList(updatedcardListObj);
+            console.log(props.user)
+            firebase.database().ref("user").child(props.user).set({cardStorage:cardListObj});
+        // }
+
+        // setSave(true)
+        // if(save) {
+        //     let updatedcardListObj = {...cardListObj}
+        //     updatedcardListObj[petName] = pet
+        //     setList(updatedcardListObj)
+        //     if(cardListObj.containsKey(petName)) {
+        //         firebase.database().ref("user").child(props.user).set({cardStorage:cardListObj})
+        //     }
+        // }
+
+        // WHAT COCO SUGGESTED
+        // setSave(true)
+        // if(save) {
+            // if(cardListObj.containsKey(petName)) {
+                // let updatedcardListObj = {...cardListObj};
+                // updatedcardListObj[petName] = pet;
+                // setList(updatedcardListObj);
+                // firebase.database().ref("user").child(props.user).set({cardStorage:cardListObj});
+        // }
+        
+
+        // else {
+        //     const newCardObj = pet
+        //     const userRef = firebase.database().ref(props.user).set()
+        //     userRef.push(undefined)
+        // }
     }
 
     return (
