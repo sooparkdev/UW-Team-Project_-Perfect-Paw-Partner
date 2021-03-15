@@ -34,14 +34,11 @@ export function App(props) {
       setInfo(user.uid);
       // User logged in already or has just logged in.
       
-      let obj = {};
       firebase.database().ref("user").child(user.uid).set( {
         uid: user.uid,
         name: user.displayName,
         email: user.email,
-        cardStorage: {}
       })
-      //firebase.database().ref("user").child(user.uid).set({cardStorage:{}})
       console.log(user.uid);
     } else {
       // User not logged in or has just logged out.
