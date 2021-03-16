@@ -13,42 +13,36 @@ export default function BookmarkList(props) {
         userRef.on('value', (snapshot) => {
             let snapshotData = snapshot.val();
             console.log(snapshotData)
-            console.log("hey im here")
             setBookmark(snapshotData)
         })
     })
 
+   
 
-    // const [bookmark, setArray] = useState([])
+    
 
-    // useEffect(() => {
-    //     const userRef = firebase.database().ref(props.user) 
-    //     userRef.on('value', (snapshot) => {
-    //         const theUserObj = snapshot.val();
-    //         let objectKeyArray = Object.keys(theUserObj);
-    //         let bookmarkArray = objectKeyArray.map((key) => {
-    //             let singleCardObj = theUserObj[key];
-    //             singleCardObj.key = key;
-    //             return singleCardObj;
-    //         })
-    //         setArray(bookmarkArray);
-    //     })
-    // }, [])   
-
-    // if(bookmark.length == 0) return null;
-
-    // let cardItems = [];
-
-    // cardItems = bookmark.map((petObj) => {
-    //     return <BookmarkCard key={petObj.key} petObj={petObj} currentUser={props.currentUser} />
-    // })
-
+    if(bookmark == null) {
+        return (
+            <div className="empty-bookmark">
+                <Link to='/home'> <FontAwesomeIcon className="bookmarkBackButton" icon={faChevronLeft}/> </Link>
+                <h1> No Bookmarked Cards </h1>
+            </div>
+        );
+    }
+    // else {
+        const bookmarkObjKeys = Object.keys(bookmark)
+        let cardItems = [];
+        cardItems = bookmarkObjKeys.map((pet) => {
+            return <BookmarkCard key={bookmark[pet].key} petObj={bookmark[pet]} currentUser={props.currentUser} />
+        })
+    // }
+    
 
     //let petList = props.pets.map((pet) => (<BookmarkCard key={pet.name} petObj={pet} />));
     return (
       <div className="bookmark-container">
-        <Link to='/home'> <FontAwesomeIcon icon={faChevronLeft}/> </Link>
-    
+        <Link to='/home'> <FontAwesomeIcon className="bookmarkBackButton" icon={faChevronLeft}/> </Link>
+        {cardItems}
       </div>
     );
 }

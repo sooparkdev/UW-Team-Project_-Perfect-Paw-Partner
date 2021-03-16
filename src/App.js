@@ -67,7 +67,7 @@ export function App(props) {
           <Route path="/home"> <HomePage pets={pets} user={user} /> </Route>
           <Route path="/splash"> <SplashPage /> </Route>
           <Route path="/login"> <LoginPage pets={pets} user={user} setUser={setUser} /> </Route>
-          <Route path="/bookmark"> <BookmarkList pets={pets} user={user}/> </Route>
+          <Route path="/bookmark"> <BookmarkList pets={pets} user={userInfo}/> </Route>
           <Route path="/adopt/:petName"> <Profile petArray={pets} user={userInfo}/> </Route>
         </Switch>      
       </BrowserRouter>
@@ -92,6 +92,7 @@ export function LoginPage (props) {
     content = (
       <div className="container">
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        //<Redirect to='/login'/>
       </div>
     )
  }

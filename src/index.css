@@ -352,7 +352,7 @@ button {
   .profile-flex-container {
     display: flex;
     height: 850px;
-    margin: 1.8em ;
+    margin: 1.8em;
     background-color: #ede7da;
     border-radius: 40px;
     flex-direction: column; 
@@ -423,16 +423,37 @@ button {
   }
   
  .bookmark-container {
-     background-color: #8eb0d1;
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: space-evenly; 
+    background-color: #8eb0d1;
+    height: 100%; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; 
  } 
 
+.empty-bookmark {
+    height: 850px;
+    background-color: #8eb0d1; 
+}
+
+.empty-bookmark h1 {
+    margin-top: 0em;
+    margin-left: 1em;
+    font-family: 'Gurajada', sans-serif;
+    color: #535353;
+}
+
+.bookmarkBackButton {
+    margin: 1em;
+    color: #535353;
+    font-size: 20px;
+}
+
 .bookmarkCard {
+    background-color: #8eb0d1;
     display: flex;
     flex: 0 0 500px;  
 }
+
 .bookmarkCard button {    
     display: flex;
     flex: 0 0 500px;  
