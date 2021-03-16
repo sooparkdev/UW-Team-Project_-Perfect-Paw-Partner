@@ -8,94 +8,24 @@ import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Profile(props) {
-    const [save, setSave] = useState(false)
-    //const [cardListObj, setList] = useState({})
-    //const [bookmarkedPets, updateBookmarkedPets] = useState(firebase.database().ref("user").child(props.user).child(cardStorage))
+    // const [save, setSave] = useState(false)
+
 
     const urlParams = useParams();
     let petName = urlParams.petName;
     let pet =  _.find(props.petArray, {name: petName});
 
-    
+
 
     const onBookmarkClick = () => {
-        if (firebase.database().ref("user").child(props.user).cardStorage.containsKey(petName)) { // case: pet already bookmarked
-            delete firebase.database().ref("user").child(props.user).cardStorage.petName // remove it
-        } else { // case: pet isn't bookmarked
-            let petObj = findPetFromPetsArray(props.pets, petName);
-            firebase.database().ref("user").child(props.user).cardStorage.set({petName:petObj}); // set cardstorage to have a key with the pet's name that stores the object
-            // bookmarkedPets.petName = petObj; 
-        }
-    }
-
-    const findPetFromPetsArray = (arr, name) => {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr.name == name) {
-                return arr[0];
-            }
-        }
-    }
-
-    useEffect(() => {
-        const userRef = firebase.database().ref(props.user) 
-        userRef.on('value', (snapshot) => {
-        const theUserObj = snapshot.val()
-    })
-    }, [])
-    
-    
-    //function handleBookmarkClick() {
-
-        // if else -- toggle
-        // let updatedcardListObj = {...cardListObj};
-        // updatedcardListObj[petName] = pet;
-        // setList(updatedcardListObj);
-        // console.log(props.user)
-        // firebase.database().ref("user").child(props.user).set({cardStorage:cardListObj});
-
-        // setSave(!save);
-        // if(save) {
-        //     if(cardListObj.containsKey(petName)) {
-        //         // create object with this particular card object for the first time
-        //         let cardListObj = {};
-        //         cardListObj[petName] = pet; // way to add an element?
-        //         firebase.database().ref("user").child(props.user).push({cardStorage:cardListObj});
-        //     } else {
-        //         // if we already have the object
-                
-                
-        //     }
+        const ref = firebase.database().ref("user/" + props.user + "/bookmarkList")
+        // if (bookmark. == false) {
+            firebase.database().ref("user/" + props.user + "/bookmarkList" + pet.uid).set(pet);
         // } else {
-        //     firebase.database().ref("user").child(props.user).child(cardStorage[petName]).set(undefined);
+            // ref = firebase.database().ref(props.user.bookmarkList.petID)
+            // ref(props.user.bookmarkList.petID).set(null);
         // }
-
-        // setSave(true)
-        // if(save) {
-        //     let updatedcardListObj = {...cardListObj}
-        //     updatedcardListObj[petName] = pet
-        //     setList(updatedcardListObj)
-        //     if(cardListObj.containsKey(petName)) {
-        //         firebase.database().ref("user").child(props.user).set({cardStorage:cardListObj})
-        //     }
-        // }
-
-        // WHAT COCO SUGGESTED
-        // setSave(true)
-        // if(save) {
-            // if(cardListObj.containsKey(petName)) {
-                // let updatedcardListObj = {...cardListObj};
-                // updatedcardListObj[petName] = pet;
-                // setList(updatedcardListObj);
-                // firebase.database().ref("user").child(props.user).set({cardStorage:cardListObj});
-        // }
-        
-
-        // else {
-        //     const newCardObj = pet
-        //     const userRef = firebase.database().ref(props.user).set()
-        //     userRef.push(undefined)
-        // }
-    //}
+    }
 
     return (
         <div className="profile-body">

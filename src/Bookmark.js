@@ -5,23 +5,38 @@ import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 export default function BookmarkList(props) {
-    const [bookmark, setArray] = useState([])
+    const [bookmark, setBookmark] = useState({})
+
 
     useEffect(() => {
-        const userRef = firebase.database().ref(props.user) 
+        const userRef = firebase.database().ref("user/" + props.user + "/bookmarkList") 
         userRef.on('value', (snapshot) => {
-            const theUserObj = snapshot.val()
-            let objectKeyArray = Object.keys(theUserObj)
-            let bookmarkArray = objectKeyArray.map((key) => {
-                let singleCardObj = theUserObj[key]
-                singleCardObj.key = key
-                return singleCardObj;
-            })
-            setArray(bookmarkArray)
-        })
-    }, [])   
+            let snapshotData = snapshot.val();
+            console.log(snapshotData)
+            // let dataObj =
 
-    if(bookmark.length == 0) return null;
+            // setBookmark(dataObj)
+        })
+    })
+
+
+    // const [bookmark, setArray] = useState([])
+
+    // useEffect(() => {
+    //     const userRef = firebase.database().ref(props.user) 
+    //     userRef.on('value', (snapshot) => {
+    //         const theUserObj = snapshot.val();
+    //         let objectKeyArray = Object.keys(theUserObj);
+    //         let bookmarkArray = objectKeyArray.map((key) => {
+    //             let singleCardObj = theUserObj[key];
+    //             singleCardObj.key = key;
+    //             return singleCardObj;
+    //         })
+    //         setArray(bookmarkArray);
+    //     })
+    // }, [])   
+
+    // if(bookmark.length == 0) return null;
 
     let cardItems = [];
 

@@ -4,7 +4,7 @@ import NavBar from './Navbar';
 import BookmarkList from './Bookmark';
 import FilterBar from './Filterbar';
 import Profile from './ProfilePage'
-import { BrowserRouter, Route, Switch, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
@@ -45,6 +45,21 @@ export function App(props) {
     }
   });
 
+    useEffect(() => {
+      const authUnregisterFunction = firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if(firebaseUser) {
+        setUser(firebaseUser);
+      } else {
+        setUser(null);
+      }
+  })
+
+  return function cleanup() {
+    authUnregisterFunction()
+  }
+
+  }, [])
+
   return (
       <BrowserRouter>
         <Switch>
@@ -62,39 +77,23 @@ export function App(props) {
 export function LoginPage (props) {
   const pets = props.pets;
   const user = props.user;
-  const setUser = props.setUser;
+  // const setUser = props.setUser;
   // const errorMessage = props.errorMessage;
 
-  useEffect(() => {
-      const authUnregisterFunction = firebase.auth().onAuthStateChanged((firebaseUser) => {
-      if(firebaseUser) {
-        setUser(firebaseUser);
-      } else {
-        setUser(null);
-      }
-  })
 
-  return function cleanup() {
-    authUnregisterFunction()
-  }
-
-}, [])
   
   let content = null;
 
-  if(!user) {
-   content = (
-     <div className="container">
-       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-     </div>
-   )} else {
-   content = (
-     <div>
-       {user &&
-        <HomePage pets={pets}/>
-       }
-     </div>
-   );
+  if(user) {
+    return (
+      <Redirect to='/home'/>
+    );
+   } else {
+    content = (
+      <div className="container">
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+      </div>
+    )
  }
 
 //  console.log(errorMessage)
