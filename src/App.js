@@ -37,12 +37,12 @@ export function App(props) {
       firebase.database().ref("user").child(user.uid).set( {
         uid: user.uid,
         name: user.displayName,
-        email: user.email,
+        email: user.email
       })
-      console.log(user.uid);
-    } else {
-      // User not logged in or has just logged out.
-    }
+    } 
+    // else {
+    //   // User not logged in or has just logged out.
+    // }
   });
 
     useEffect(() => {

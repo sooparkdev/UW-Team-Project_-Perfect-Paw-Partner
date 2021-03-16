@@ -20,7 +20,7 @@ export default function Profile(props) {
     const onBookmarkClick = () => {
         const ref = firebase.database().ref("user/" + props.user + "/bookmarkList")
         // if (bookmark. == false) {
-            firebase.database().ref("user/" + props.user + "/bookmarkList" + pet.uid).set(pet);
+            firebase.database().ref("user/" + props.user + "/bookmarkList").push(pet);
         // } else {
             // ref = firebase.database().ref(props.user.bookmarkList.petID)
             // ref(props.user.bookmarkList.petID).set(null);

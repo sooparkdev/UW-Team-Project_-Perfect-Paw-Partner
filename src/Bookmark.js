@@ -13,9 +13,8 @@ export default function BookmarkList(props) {
         userRef.on('value', (snapshot) => {
             let snapshotData = snapshot.val();
             console.log(snapshotData)
-            // let dataObj =
-
-            // setBookmark(dataObj)
+            console.log("hey im here")
+            setBookmark(snapshotData)
         })
     })
 
@@ -38,18 +37,18 @@ export default function BookmarkList(props) {
 
     // if(bookmark.length == 0) return null;
 
-    let cardItems = [];
+    // let cardItems = [];
 
-    cardItems = bookmark.map((petObj) => {
-        return <BookmarkCard key={petObj.key} petObj={petObj} currentUser={props.currentUser} />
-    })
+    // cardItems = bookmark.map((petObj) => {
+    //     return <BookmarkCard key={petObj.key} petObj={petObj} currentUser={props.currentUser} />
+    // })
 
 
     //let petList = props.pets.map((pet) => (<BookmarkCard key={pet.name} petObj={pet} />));
     return (
       <div className="bookmark-container">
-        <Link to='/splash'> <FontAwesomeIcon icon={faChevronLeft}/> </Link>
-        {/* {cardItems} */}
+        <Link to='/home'> <FontAwesomeIcon icon={faChevronLeft}/> </Link>
+    
       </div>
     );
 }
