@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 
-
 export default function PetList(props) {
     let pets = props.petInfo;
     let state = props.state;

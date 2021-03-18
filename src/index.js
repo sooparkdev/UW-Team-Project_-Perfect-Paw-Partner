@@ -17,8 +17,6 @@ const firebaseConfig = {
     measurementId: "G-YZ26QFYZPF"
 };
 
-{/* <script src="/__/firebase/init.js"></script> */}
-
 firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(<App pets={PET_DATA} />, document.getElementById('root'));

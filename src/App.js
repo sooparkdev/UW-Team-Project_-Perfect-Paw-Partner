@@ -18,44 +18,36 @@ const uiConfig = {
   ],
   credentialHelper: 'none',
   callbacks: {
-    signInSuccessWithAutheEsult: () => false,
+    signInSuccessWithAuthResult: () => false
   },
 };
 
 export function App(props) {
   const pets = props.pets;
-  // const [errorMessage, setErrorMessage] = useState(undefined);
-  const [user, setUser] = useState(undefined);
-  const [ userInfo, setInfo ] = useState(undefined);
+  const [user, setUser] = useState(null);
+  const [userInfo, setInfo] = useState(undefined);
+  const [bookmark, setBookmark] = useState({});
+  console.log(bookmark)
 
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setInfo(user.uid);
-      // User logged in already or has just logged in.
-      
-      firebase.database().ref("user").child(user.uid).set( {
-        uid: user.uid,
-        name: user.displayName,
-        email: user.email
-      })
-    } 
-    // else {
-    //   // User not logged in or has just logged out.
-    // }
-  });
-
-    useEffect(() => {
-      const authUnregisterFunction = firebase.auth().onAuthStateChanged((firebaseUser) => {
-      if(firebaseUser) {
-        setUser(firebaseUser);
+  useEffect(() => {
+    const authUnregisterFunction = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setInfo(user.uid);
+        setUser(user);
+        const userRef = firebase.database().ref("user/" + user.uid + "/bookmarkList"); 
+        userRef.on('value', (snapshot) => {
+            let snapshotData = snapshot.val();
+            setBookmark(snapshotData);
+        })
       } else {
         setUser(null);
+        setInfo(null);
       }
-  })
+    })
 
   return function cleanup() {
-    authUnregisterFunction()
+    authUnregisterFunction();
   }
 
   }, [])
@@ -67,8 +59,8 @@ export function App(props) {
           <Route path="/home"> <HomePage pets={pets} user={user} /> </Route>
           <Route path="/splash"> <SplashPage /> </Route>
           <Route path="/login"> <LoginPage pets={pets} user={user} setUser={setUser} /> </Route>
-          <Route path="/bookmark"> <BookmarkList pets={pets} user={userInfo}/> </Route>
-          <Route path="/adopt/:petName"> <Profile petArray={pets} user={userInfo}/> </Route>
+          <Route path="/bookmark"> <BookmarkList pets={pets} user={userInfo} bookmark={bookmark} setBookmark={setBookmark}/> </Route>
+          <Route path="/adopt/:petName"> <Profile petArray={pets} user={userInfo} bookmark={bookmark} setBookmark={setBookmark}/> </Route>
         </Switch>      
       </BrowserRouter>
   )
@@ -77,35 +69,26 @@ export function App(props) {
 export function LoginPage (props) {
   const pets = props.pets;
   const user = props.user;
-  // const setUser = props.setUser;
-  // const errorMessage = props.errorMessage;
 
-
-  
   let content = null;
 
   if(user) {
     return (
       <Redirect to='/home'/>
     );
-   } else {
+  } else {
     content = (
       <div className="container">
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-        //<Redirect to='/login'/>
       </div>
     )
- }
+  }
 
-//  console.log(errorMessage)
- return (
-   <div>
-     {/* {errorMessage &&
-      <p className="alert alert-danger">{errorMessage}</p>
-    } */}
-    {content}
-   </div>
- );
+  return (
+    <div>
+      {content}
+    </div>
+  );
 }
 
 export function SplashPage () {
@@ -113,7 +96,7 @@ export function SplashPage () {
       <div className="splash-body">
           <header id="splash-contents">
               <h1>Perfect Paw Partner</h1> 
-              <Link to='/login' className="splash-button" aria-label="a button to go to the main page"> GO TO MAIN PAGE </Link>
+              <Link to='/home' className="splash-button" aria-label="a button to go to the main page"> GO TO MAIN PAGE </Link>
           </header>
       </div>
   );

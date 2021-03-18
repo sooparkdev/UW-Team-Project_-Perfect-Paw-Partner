@@ -5,23 +5,11 @@ import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 export default function BookmarkList(props) {
-    const [bookmark, setBookmark] = useState({})
+    const user = props.user;
+    const bookmark = props.bookmark;
+    const setBookmark = props.setBookmark;
 
-
-    useEffect(() => {
-        const userRef = firebase.database().ref("user/" + props.user + "/bookmarkList") 
-        userRef.on('value', (snapshot) => {
-            let snapshotData = snapshot.val();
-            console.log(snapshotData)
-            setBookmark(snapshotData)
-        })
-    })
-
-   
-
-    
-
-    if(bookmark == null) {
+    if(bookmark == null || user === null) {
         return (
             <div className="empty-bookmark">
                 <Link to='/home'> <FontAwesomeIcon className="bookmarkBackButton" icon={faChevronLeft}/> </Link>
@@ -29,16 +17,13 @@ export default function BookmarkList(props) {
             </div>
         );
     }
-    // else {
-        const bookmarkObjKeys = Object.keys(bookmark)
-        let cardItems = [];
-        cardItems = bookmarkObjKeys.map((pet) => {
-            return <BookmarkCard key={bookmark[pet].key} petObj={bookmark[pet]} currentUser={props.currentUser} />
-        })
-    // }
-    
 
-    //let petList = props.pets.map((pet) => (<BookmarkCard key={pet.name} petObj={pet} />));
+    const bookmarkObjKeys = Object.keys(bookmark);
+    let cardItems = [];
+    cardItems = bookmarkObjKeys.map((pet) => {
+        return <BookmarkCard key={bookmark[pet].key} petObj={bookmark[pet]} currentUser={props.currentUser} />
+    })
+    
     return (
       <div className="bookmark-container">
         <Link to='/home'> <FontAwesomeIcon className="bookmarkBackButton" icon={faChevronLeft}/> </Link>
@@ -58,5 +43,3 @@ function BookmarkCard(props) {
         </div>
     );
 }
-
-

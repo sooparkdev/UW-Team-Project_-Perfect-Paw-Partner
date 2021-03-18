@@ -5,15 +5,11 @@ import {Link} from 'react-router-dom';
 import firebase from 'firebase/app';
 
 function NavBar(props) {
-    // const [open, setOpen] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
-    // const user = props.user;
-    // const handleSignOut = props.handleSignOut;
+    const user = props.user;
 
     const handleSignOut = () => {
-        //setErrorMessage(null);
         firebase.auth().signOut();
-        // console.log("signed out")
       }
 
     return (
@@ -44,11 +40,7 @@ function NavBar(props) {
                         <Link to='/bookmark' ><FontAwesomeIcon className="bookmarkButton" icon={faBookmark}/> </Link>
                     </li>
                     <li>
-                        {/* <a href="#profile"><FontAwesomeIcon icon={faSmile}/></a> */}
-
-                        <button className="btn btn-warning" onClick={handleSignOut}>
-                            Log Out
-                        </button>
+                        {user === null ? <button><Link to="/login" className="loginButton">Sign In</Link></button> : <button onClick={handleSignOut}>Sign Out</button>}
                     </li>
                 </ul>
                 <ul className="hamburger-link">
@@ -60,6 +52,7 @@ function NavBar(props) {
                     <div className="dropdown">
                         <Link to="/splash">Back to Splash</Link>
                         <Link to="/bookmark">Bookmark</Link>
+                        {user === null ? <Link to="/login" className="loginButton">Sign In</Link> : <div onClick={handleSignOut} className="logoutButton"> Sign Out</div>}
                     </div>
                 }
             </nav>

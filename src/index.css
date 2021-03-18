@@ -226,6 +226,24 @@ nav .filter-link {
     margin-left: 6px;
 }
 
+.loginButton {
+    text-decoration: none;
+}
+
+.bookmark-disabled {
+    background: #828282;
+    color: #BDBDBD;
+    cursor: default;
+}
+
+.logoutButton {
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    color: #535353;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
 @media (min-width: 598px) {
     .splash-body {
       font-size: 15px;
@@ -486,15 +504,3 @@ button {
     font-size: 32px;
     padding-top: 3px;
 }
-
-
-
-
-
-
-
-
-
-
-
-    

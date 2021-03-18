@@ -4,27 +4,16 @@ import { Link, useParams } from 'react-router-dom';
 import firebase from 'firebase/app';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
-// 
-
 
 export default function Profile(props) {
-    // const [save, setSave] = useState(false)
-
-
+    const user = props.user;
+    const setBookmark = props.setBookmark;
     const urlParams = useParams();
     let petName = urlParams.petName;
     let pet =  _.find(props.petArray, {name: petName});
 
-
-
     const onBookmarkClick = () => {
-        const ref = firebase.database().ref("user/" + props.user + "/bookmarkList")
-        // if (bookmark. == false) {
-            firebase.database().ref("user/" + props.user + "/bookmarkList").push(pet);
-        // } else {
-            // ref = firebase.database().ref(props.user.bookmarkList.petID)
-            // ref(props.user.bookmarkList.petID).set(null);
-        // }
+        firebase.database().ref("user/" + props.user + "/bookmarkList").push(pet)
     }
 
     return (
@@ -56,7 +45,10 @@ export default function Profile(props) {
                         </div>
 
                         <div>
-                            <button className="bookmark-button" type="button" aria-label="a button saving this pet to bookmark" onClick={onBookmarkClick} >SAVE TO BOOKMARK</button>
+                            {user === null ?  
+                             <button className="bookmark-disabled">SIGN IN TO BOOKMARK</button> :
+                            <button className="bookmark-button" onClick={onBookmarkClick} >SAVE TO BOOKMARK</button> 
+}
                         </div>
 
                     </div>
